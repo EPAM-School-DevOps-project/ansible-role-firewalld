@@ -1,0 +1,5 @@
+    - name: Restart firewall
+      listen: "restart firewall"
+      service:
+        name: firewalld
+        state: restarted

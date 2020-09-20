@@ -1,0 +1,41 @@
+  - name: Install Firewalld service
+    yum:
+      name: firewalld
+      state: present
+
+  - name: Start firewalld service
+    service:
+      name: firewalld
+      state: started
+
+  - name: Allow SSH ports for whitelisted ip's
+    firewalld:
+      service: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+    notify: "restart firewall"
+    loop:
+      - ssh
+
+  - name: Allow FLASK ports on firewalld
+    firewalld:
+      port: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+    notify: "restart firewall"
+    loop:
+      - "8000/tcp"
+    #when: inventory_hostname == "centos-app"
+
+  - name: Allow MySQL port from web server on firewalld
+    firewalld:
+      port: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+    notify: "restart firewall"
+    loop:
+      - "3306/tcp"
+    #when: inventory_hostname == "centos-db"
