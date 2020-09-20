@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  role_name: 'ansible-role-firewalld'
+  author: 'Grach Gambarian - hrach.hambaryan@gmail.com'
+  description: 'Ansible role for Firewalld'
+  company: 'EPIC GAMES'
+
+  min_ansible_version: '2.8'
+
+  platforms:
+    - name: 'Debian'
+      versions:
+        - 'stretch'
+    - name: 'Ubuntu'
+      versions:
+        - 'bionic'
+    - name: 'CentOs'
+      versions:
+        - 'all'
+
+dependencies: []
